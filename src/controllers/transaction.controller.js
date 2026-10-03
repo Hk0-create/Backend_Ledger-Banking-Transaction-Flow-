@@ -127,20 +127,20 @@ async function  createTransaction(req, res){
       status: "Pending"
     }], { session });
 
-    // Kyunki array ki form mein create kiya hai, isliye first element nikal lein
+    
     const savedTransaction = transaction[0];
 
     const debitLedgerEntry = await ledgerModel.create([{
       account: fromAccount,
       amount: amount,
-      transaction: savedTransaction._id, // Ab ye ID theek se mil jayegi
+      transaction: savedTransaction._id, 
       type: "Debit"
     }], { session });
     
     const craditLedgerEntry = await ledgerModel.create([{
       account: toAccount,
       amount: amount,
-      transaction: savedTransaction._id, // Ab ye ID bhi theek se mil jayegi
+      transaction: savedTransaction._id, 
       type: "Credit"
     }], { session });
 
